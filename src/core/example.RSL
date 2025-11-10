@@ -1,0 +1,13 @@
+trigger: newFile ~/Downloads
+do: notify "Starting Script"
+if: type == .png
+    do: move ~/Pictures
+    do: notify "Moved " + name + " to Pictures"
+else:
+    if: name has "installer":
+        do: delete
+    else:
+        do: nothing
+    endif
+endif
+do: notify "Finished Script"

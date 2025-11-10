@@ -1,0 +1,22 @@
+# Build artifacts
+build/
+*.o
+*.exe
+*.out
+*.app
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Compiled binaries
+ritual
+a.out

@@ -1,0 +1,21 @@
+trigger: every 24h
+do: get *.txt
+if: name has "installer"
+    do: delete
+    do: notify "Deleted " + name
+else:
+    if: name has "windows"
+        do: move ./windows
+    else:
+        if: name has "word"
+            do: rename name.doc
+        else:
+            do: nothing
+        endif
+    endif
+endif
+if: file exists
+    do: "File Organized"
+else:
+    do: "File Deleted"
+endif
