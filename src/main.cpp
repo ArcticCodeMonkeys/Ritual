@@ -2,6 +2,7 @@
 #include <sstream>
 #include <iostream>
 #include "Parser.cpp"
+#include "Executor.h"
 
 int main(int argc, char** argv) {
     // Get ritual data from example.RSL
@@ -15,6 +16,7 @@ int main(int argc, char** argv) {
     Ritual ritual;
     parseRitual(ritualData, ritual);
     printTree(ritual, 0);
+    performRitual(ritual);
 
     return 0;
 }

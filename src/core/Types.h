@@ -1,3 +1,6 @@
+#ifndef TYPES_H
+#define TYPES_H
+
 #include <vector>
 #include <string>
 #include <variant>
@@ -9,14 +12,12 @@ using namespace std;
 struct Action {
     string type;
     vector<string> parameters;
-    void execute() const;
 };
 
 struct Condition {
     string lhs = "";
     string op = "";
     string rhs = "";
-    bool evaluate() const;
 };
 
 // Forward-declare Command so Conditional can reference it
@@ -38,3 +39,5 @@ struct Ritual {
     string trigger;
     vector<Command> commands;
 };
+
+#endif // TYPES_H

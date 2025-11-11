@@ -31,4 +31,4 @@ Trigger List:
 
 Conditions List:
 - File Query: Get information about a file, compare it.
-- C
+- Folder Query: Get information about a folder qurry
