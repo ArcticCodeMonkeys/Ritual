@@ -1,0 +1,16 @@
+Format:
+Date, Ver (Full Release, Major Feature, Feature Tweaks / Bug Fixes)
+Commit Message
+- Detailed points of changes
+November 10th, Ver 1.0.0
+Initial Commit: RSL Parser and Types
+- Added Types for Rituals (the entire script), Commands (either an Action or Conditional), Conditionals (an if, else statement with Commands inside it), and Actions (the most fundemental operations).
+- Added a parser to build the Ritual tree. Rituals can now be read through and printed as a tree through the printTree function.
+November 11th, Ver 1.1.0
+Added Base Framework for performing rituals
+- Added simple framework for the execution order of performing rituals
+November 11th, Ver 1.1.1
+Added execution for actions and evaluation of conditions
+- Implemented the move, copy and delete actions
+- Implemented the exists, name has, path has, type has, file has, name ==, type ==, size ==, size <, size >, size ==, age <, age >, age ==, is_dir, and is_file conditions
+

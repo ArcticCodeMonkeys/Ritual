@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
     Ritual ritual;
     parseRitual(ritualData, ritual);
     printTree(ritual, 0);
-    performRitual(ritual);
+    performRitual(ritual, { "file1.txt", "file2.txt" });
 
     return 0;
 }
