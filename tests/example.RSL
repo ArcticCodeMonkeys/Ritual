@@ -1,4 +1,4 @@
-trigger: newFile ~/Downloads
+trigger: newFile in ~/Downloads
 do: notify "Starting Script"
 if: type == .png
     do: move ~/Pictures
