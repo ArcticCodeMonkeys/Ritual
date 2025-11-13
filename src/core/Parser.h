@@ -1,19 +1,20 @@
-using namespace std;
+#ifndef PARSER_H
+#define PARSER_H
 
 #include "Types.h"
+#include "Helpers.h"
+#include <string>
+#include <vector>
+#include <utility>
+#include <memory>
 #include <sstream>
+#include <iostream>
 
-static inline string trim(const string& s) {
-    size_t a = s.find_first_not_of(" \t\r\n");
-    if (a == string::npos) return string();
-    size_t b = s.find_last_not_of(" \t\r\n");
-    return s.substr(a, b - a + 1);
-}
+using namespace std;
 
-// Forward declarations of parser/printing helpers (Parser.cpp is included by main.cpp, so
-// functions used earlier must be declared before use)
-vector<Command> parseCommands(const vector<string>& lines);
+// Forward declarations
 Action parseAction(const string& line);
+vector<Command> parseCommands(const vector<string>& lines);
 pair<shared_ptr<Conditional>, int> parseConditional(const vector<string>& lines);
 Condition parseCondition(const string& line);
 void printTree(const Ritual& ritual, int indent);
@@ -131,7 +132,7 @@ pair<shared_ptr<Conditional>, int> parseConditional(const vector<string>& lines)
     // Parse commands for else branch if it exists
     if (elseIndex != -1) {
         vector<string> elseLines;
-        for (size_t i = elseIndex + 1; i < endifIndex; ++i) {
+        for (size_t i = elseIndex + 1; i < (size_t)endifIndex; ++i) {
             elseLines.push_back(lines[i]);
         }
         conditional->elseCommands = parseCommands(elseLines);
@@ -189,3 +190,5 @@ void printCondition(const Condition& condition, int indent) {
     string indentStr(indent, ' ');
     cout << indentStr << "Condition: " << condition.lhs << " " << condition.op << " " << condition.rhs << endl;
 }
+
+#endif // PARSER_H

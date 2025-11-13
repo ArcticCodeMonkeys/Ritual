@@ -28,6 +28,7 @@ Trigger List:
 - Duration: Triggers after a certain amount of time
 - Capacity: Triggers after a certain amount of space is consumed in a given folder
 - Quantity: Triggers after a certain amount of files are in a given folder
+- NewFile: Triggers after a new file appears in a directory
 
 Conditions List:
 - File Query: Get information about a file, compare it.
