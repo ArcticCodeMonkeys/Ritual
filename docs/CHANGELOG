@@ -2,15 +2,47 @@ Format:
 Date, Ver (Full Release, Major Feature, Feature Tweaks / Bug Fixes)
 Commit Message
 - Detailed points of changes
-November 10th, Ver 1.0.0
-Initial Commit: RSL Parser and Types
-- Added Types for Rituals (the entire script), Commands (either an Action or Conditional), Conditionals (an if, else statement with Commands inside it), and Actions (the most fundemental operations).
-- Added a parser to build the Ritual tree. Rituals can now be read through and printed as a tree through the printTree function.
-November 11th, Ver 1.1.0
-Added Base Framework for performing rituals
+
+November 10th, 2025, Ver 1.0.0
+Initial commit: RSL Parser and Types
+- Added Types for Rituals (the entire script), Commands (either an Action or Conditional), Conditionals (an if, else statement with Commands inside it), and Actions (the most fundamental operations)
+- Added a parser to build the Ritual tree. Rituals can now be read through and printed as a tree through the printTree function
+- Created RSLang.md documentation for the Ritual Scripting Language
+- Added example RSL files (example.RSL and example2.RSL)
+
+November 11th, 2025, Ver 1.1.0
+Added base framework for performing rituals
 - Added simple framework for the execution order of performing rituals
-November 11th, Ver 1.1.1
+- Implemented performRitual function to execute rituals on file objects
+
+November 11th, 2025, Ver 1.1.1
 Added execution for actions and evaluation of conditions
 - Implemented the move, copy and delete actions
 - Implemented the exists, name has, path has, type has, file has, name ==, type ==, size ==, size <, size >, size ==, age <, age >, age ==, is_dir, and is_file conditions
+- Added CHANGELOG file to track project history
+
+November 13th, 2025, Ver 1.1.2
+Fixed forward declaration mismatch
+- Fixed function signature mismatches in Executor.h
+- Resolved compilation errors with forward declarations
+
+November 13th, 2025, Ver 1.2.0
+Reorganized files and functions and created CMake files for building
+- Created CMakeLists.txt for project build configuration
+- Added build.sh script for convenient building
+- Created BUILD.md documentation for build instructions
+- Moved CHANGELOG to docs/ directory
+- Converted Parser.cpp to Parser.h (header-only implementation)
+- Added Helpers.h with utility functions (trim function)
+- Moved example RSL files to tests/ directory
+- Integrated efsw library for file system watching
+
+November 13th, 2025, Ver 1.3.0
+Added a Manager to start all rituals and a Watcher to observe file changes and trigger rituals
+- Implemented Manager.h to coordinate ritual execution
+- Implemented Watcher.h with efsw integration for file system monitoring
+- Added Scheduler.h framework for time-based ritual triggers
+- Expanded Helpers.h with file extension and directory extraction utilities
+- Moved helper functions from Types.h to Helpers.h for better organization
+- Added support for watching directories and triggering rituals on file events
 
