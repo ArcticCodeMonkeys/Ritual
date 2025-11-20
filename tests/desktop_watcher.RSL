@@ -1,2 +1,6 @@
 trigger: newFile
-do: move ~/Downloads
+if: type == ".txt"
+    do: delete
+else:
+    do: nothing
+endif

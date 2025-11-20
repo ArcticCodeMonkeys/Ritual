@@ -33,3 +33,6 @@ Trigger List:
 Conditions List:
 - File Query: Get information about a file, compare it.
 - Folder Query: Get information about a folder qurry
+
+Stretch Goals:
+- Blacklist Certain Files

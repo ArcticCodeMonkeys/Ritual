@@ -58,3 +58,13 @@ Fixed file watcher implementation and action execution
 - Updated main.cpp to properly manage watcher lifetime and prevent premature destruction
 - Added header guards to Helpers.h to prevent multiple definition errors
 - Successfully tested end-to-end file watching and automatic file movement
+
+November 20th, 2025, Ver 1.3.2
+Enhanced delete action and condition evaluation
+- Changed delete action to move files to Trash (~/.Trash) instead of permanent deletion
+- Added erase action for permanent file deletion when needed
+- Implemented automatic timestamp appending for duplicate filenames in Trash
+- Fixed type comparison in evaluate() to properly strip quotes from condition values
+- Added comprehensive debug logging to condition evaluation
+- Added chrono header for timestamp generation
+- Verified conditional file deletion based on file type
