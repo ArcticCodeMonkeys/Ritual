@@ -1,6 +1,7 @@
 
 
-
+#ifndef HELPER_H
+#define HELPER_H
 #include <string>
 
 static inline std::string trim(const std::string& s) {
@@ -34,3 +35,4 @@ static inline std::string getDir(const Ritual& ritual) {
     std::string dir = ritual.trigger.substr(dirStart, dirEnd - dirStart);
     return trim(dir);
 }
+#endif // HELPER_H

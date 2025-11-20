@@ -46,3 +46,15 @@ Added a Manager to start all rituals and a Watcher to observe file changes and t
 - Moved helper functions from Types.h to Helpers.h for better organization
 - Added support for watching directories and triggering rituals on file events
 
+November 20th, 2025, Ver 1.3.1
+Fixed file watcher implementation and action execution
+- Fixed Watcher object lifetime issue - changed beginWatching to return pointer to keep watcher alive
+- Implemented tilde (~) path expansion in executeAction for home directory support
+- Enhanced move and copy actions to properly handle directory destinations
+- Added automatic filename appending when destination is a directory
+- Added comprehensive debug logging to track file events and action execution
+- Added error handling with try-catch for filesystem operations
+- Created desktop_watcher.RSL test file for Desktop to Downloads file movement
+- Updated main.cpp to properly manage watcher lifetime and prevent premature destruction
+- Added header guards to Helpers.h to prevent multiple definition errors
+- Successfully tested end-to-end file watching and automatic file movement

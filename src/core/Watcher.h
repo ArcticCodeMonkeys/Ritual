@@ -1,3 +1,6 @@
+#ifndef WATCHER_H
+#define WATCHER_H
+
 #include "Types.h"
 #include "Helpers.h"
 #include "Executor.h"
@@ -5,7 +8,8 @@
 #include <efsw/efsw.hpp>
 using namespace std;
 
-
+// Forward declaration
+void checkTrigger(const filesystem::path& path, efsw::Action action, const Ritual& ritual);
 
 class Watcher : public efsw::FileWatchListener {
     public:
@@ -39,13 +43,17 @@ class Watcher : public efsw::FileWatchListener {
 };
 
 
-void beginWatching(const filesystem::path& dir, Ritual ritual) {
-    Watcher watcher;
-    watcher.onEvent = [&](const filesystem::path& path, efsw::Action action) {
+Watcher* beginWatching(const filesystem::path& dir, const Ritual& ritual) {
+    Watcher* watcher = new Watcher();
+    watcher->onEvent = [ritual](const filesystem::path& path, efsw::Action action) {
         checkTrigger(path, action, ritual);
     };
-    watcher.watchDirectory(dir);
-    watcher.start();
+    watcher->watchDirectory(dir);
+    watcher->start();
+    
+    cout << "Watcher started and monitoring..." << endl;
+    
+    return watcher;
 }
 
 void checkTrigger(const filesystem::path& path, efsw::Action action, const Ritual& ritual) {
@@ -68,7 +76,15 @@ void checkTrigger(const filesystem::path& path, efsw::Action action, const Ritua
             actionType = "unknown";
     }
 
+    cout << "File event detected: " << actionType << " for " << path << endl;
+    cout << "Ritual trigger: " << ritual.trigger << endl;
+
     if(ritual.trigger.find(actionType) != string::npos) {
+        cout << "Trigger matched! Executing ritual..." << endl;
         performRitual(ritual, {path});
+    } else {
+        cout << "Trigger did not match." << endl;
     }
 }
+
+#endif // WATCHER_H

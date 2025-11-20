@@ -41,10 +41,51 @@ void executeCommand(const Command& cmd, const filesystem::path& obj) {
 
 
 void executeAction(const Action& action, const filesystem::path& obj) {
+        cout << "Executing action: " << action.type << " on " << obj << endl;
+        
         if(action.type == "move") {
-            filesystem::rename(obj, action.parameters[0]);
+            // Get destination path and expand ~
+            string destStr = action.parameters[0];
+            if (destStr[0] == '~') {
+                const char* home = getenv("HOME");
+                if (home) {
+                    destStr = string(home) + destStr.substr(1);
+                }
+            }
+            
+            filesystem::path destPath(destStr);
+            
+            // If destination is a directory, append the filename
+            if (filesystem::is_directory(destPath)) {
+                destPath = destPath / obj.filename();
+            }
+            
+            cout << "Moving " << obj << " to " << destPath << endl;
+            
+            try {
+                filesystem::rename(obj, destPath);
+                cout << "Successfully moved file!" << endl;
+            } catch (const filesystem::filesystem_error& e) {
+                cerr << "Error moving file: " << e.what() << endl;
+            }
         } else if (action.type == "copy") {
-            filesystem::copy(obj, action.parameters[0]);
+            // Get destination path and expand ~
+            string destStr = action.parameters[0];
+            if (destStr[0] == '~') {
+                const char* home = getenv("HOME");
+                if (home) {
+                    destStr = string(home) + destStr.substr(1);
+                }
+            }
+            
+            filesystem::path destPath(destStr);
+            
+            // If destination is a directory, append the filename
+            if (filesystem::is_directory(destPath)) {
+                destPath = destPath / obj.filename();
+            }
+            
+            filesystem::copy(obj, destPath);
         } else if (action.type == "delete") {
             filesystem::remove(obj);
         }
